@@ -4,7 +4,8 @@ AllCops:
     - "Rakefile"
 
   DisplayCopNames: true
-
+Layout/EndOfLine:
+  EnforcedStyle: lf
 Layout/LineLength:
   Max: 120
 Metrics/MethodLength:
