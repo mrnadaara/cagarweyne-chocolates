@@ -1,37 +1,33 @@
 AllCops:
+  TargetRubyVersion: 2.6
   Exclude:
+    - "bin/*"
+    - "db/**/*"
+    - "config/**/*"
     - "Guardfile"
     - "Rakefile"
-
+    - "node_modules/**/*"
   DisplayCopNames: true
-Layout/EndOfLine:
-  EnforcedStyle: lf
-Layout/LineLength:
-  Max: 120
+
+# Metrics/LineLength:
+# Max: 120
 Metrics/MethodLength:
+  Include: ["app/controllers/*"]
   Max: 20
 Metrics/AbcSize:
-  Max: 50
+  Include: ["app/controllers/*"]
+  Max: 30
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
   ExcludedMethods: ['describe']
-  Max: 30
-
 
 Style/Documentation:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
-Style/EachForSimpleLoop:
+Style/GlobalVars:
   Enabled: false
-Style/AndOr:
-  Enabled: false
-Style/DefWithParentheses:
-  Enabled: false
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
-
 Layout/HashAlignment:
   EnforcedColonStyle: key
 Layout/ExtraSpacing:
@@ -39,13 +35,4 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
-Lint/RaiseException:
-  Enabled: false
-Lint/StructNewOverride:
-  Enabled: false
-Style/HashEachMethods:
-  Enabled: false
-Style/HashTransformKeys:
-  Enabled: false
-Style/HashTransformValues:
-  Enabled: false
+  
