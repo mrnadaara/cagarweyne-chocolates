@@ -7,7 +7,7 @@ class V1::ChocolatesController < ApplicationController
   def search
     query = "%#{params['chocolate']['query']}%"
     chocolates = Chocolate.where("name ILIKE ?", query)
-    if chocolates
+    unless chocolates.empty?
       render json: chocolates, status: 200
     else
       render json: { message: 'No chocolates found' }, status: 404
