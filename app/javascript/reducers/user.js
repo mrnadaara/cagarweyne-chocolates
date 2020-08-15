@@ -1,7 +1,9 @@
-import { AUTH_FETCH, AUTH_SUCCESS, AUTH_FAILED } from '../actions/types';
+import {
+  AUTH_FETCH, AUTH_SUCCESS, AUTH_FAILED, SIGN_OUT,
+} from '../actions/types';
 
 const INITIAL_STATE = {
-  name: null,
+  username: null,
   id: null,
   loading: false,
   error: null,
@@ -18,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
     case AUTH_SUCCESS:
       return {
         ...state,
-        name: action.payload.name,
+        username: action.payload.username,
         id: action.payload.id,
         loading: false,
       };
@@ -28,6 +30,8 @@ export default (state = INITIAL_STATE, action) => {
         loading: false,
         error: action.payload,
       };
+    case SIGN_OUT:
+      return INITIAL_STATE;
     default:
       return state;
   }

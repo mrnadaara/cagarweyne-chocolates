@@ -7,15 +7,15 @@ Rails.application.routes.draw do
     # check user exist, insert otherwise and log in
     post 'auth', to: 'users#index'
     # list all chocolates
-    get 'chocolates', to: 'chocolates#index'
+    post 'chocolates', to: 'chocolates#index'
     # search chocolates
-    post 'chocolates', to: 'chocolates#search'
+    post 'chocolates/search', to: 'chocolates#search'
     # list user's favourites
-    get 'favourites', to: 'favourites#index'
+    post 'favourites', to: 'favourites#index'
     # check if choc is favourited by user
-    post 'favourites', to: 'favourites#check_fav'
+    post 'favourites/is-favourited', to: 'favourites#check_fav'
     # fav/unfav chocolate
-    post 'toggle-fav', to: 'favourites#toggle_fav'
+    post 'favourites/toggle-fav', to: 'favourites#toggle_fav'
   end
   root 'home#index'
 end
