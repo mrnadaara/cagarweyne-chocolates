@@ -13,6 +13,7 @@ const INITIAL_STATE = {
     name: null,
     description: null,
     image: null,
+    favourites: null,
     isFavourited: false,
   },
   error: null,

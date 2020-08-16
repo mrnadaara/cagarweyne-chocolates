@@ -23,6 +23,7 @@ export default (state = INITIAL_STATE, action) => {
         username: action.payload.username,
         id: action.payload.id,
         loading: false,
+        error: null,
       };
     case AUTH_FAILED:
       return {

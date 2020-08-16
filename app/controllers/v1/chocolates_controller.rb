@@ -6,6 +6,7 @@ class V1::ChocolatesController < ApplicationController
       object = {
         id: chocolate.id,
         name: chocolate.name,
+        description: chocolate.description,
         image: chocolate.image,
         favourites: chocolate.favourites.length
       }
@@ -23,6 +24,7 @@ class V1::ChocolatesController < ApplicationController
         object = {
           id: chocolate.id,
           name: chocolate.name,
+          description: chocolate.description,
           image: chocolate.image,
           favourites: chocolate.favourites.length
         }

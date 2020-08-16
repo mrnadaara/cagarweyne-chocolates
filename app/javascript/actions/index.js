@@ -87,7 +87,11 @@ export const signIn = username => async dispatch => {
       }),
     });
     const response = await result.json();
-    dispatch(authSuccess(response));
+    if (result.status === 200) {
+      dispatch(authSuccess(response));
+    } else {
+      dispatch(authFailed(response.message));
+    }
   } catch (e) {
     dispatch(authFailed(e.message));
   }
@@ -120,7 +124,11 @@ export const searchChocolate = query => async dispatch => {
       }),
     });
     const response = await result.json();
-    dispatch(searchChocolateSuccess(response));
+    if (result.status === 200) {
+      dispatch(searchChocolateSuccess(response));
+    } else {
+      throw new Error(response.message);
+    }
   } catch (e) {
     dispatch(searchChocolateFailed(e.message));
   }
@@ -140,7 +148,11 @@ export const fetchFavourites = () => async (dispatch, getState) => {
       }),
     });
     const response = await result.json();
-    dispatch(favSuccess(response));
+    if (result.status === 200) {
+      dispatch(favSuccess(response));
+    } else {
+      throw new Error(response.message);
+    }
   } catch (e) {
     dispatch(favFailed(e.message));
   }
@@ -161,7 +173,11 @@ export const selectChocolate = chocolate => async (dispatch, getState) => {
       }),
     });
     const response = await result.json();
-    dispatch(selectChocolateSuccess({ chocolate, isFavourited: response.isFavourited }));
+    if (result.status === 200) {
+      dispatch(selectChocolateSuccess({ chocolate, isFavourited: response.isFavourited }));
+    } else {
+      throw new Error(response.message);
+    }
   } catch (e) {
     dispatch(favFailed(e.message));
   }
@@ -183,7 +199,11 @@ export const toggleFav = () => async (dispatch, getState) => {
       }),
     });
     const response = await result.json();
-    dispatch(selectChocolateSuccess({ chocolate, isFavourited: response.isFavourited }));
+    if (result.status === 200) {
+      dispatch(selectChocolateSuccess({ chocolate, isFavourited: response.isFavourited }));
+    } else {
+      throw new Error(response.message);
+    }
   } catch (e) {
     dispatch(favFailed(e.message));
   }

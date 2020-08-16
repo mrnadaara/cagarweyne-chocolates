@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import {
-  signIn, fetchChocolates, fetchFavourites,
+  signIn, fetchChocolates, fetchFavourites, searchChocolate,
 } from '../actions';
 import {
   AUTH_SUCCESS,
@@ -77,13 +77,14 @@ describe('async actions', () => {
           name: null,
           description: null,
           image: null,
+          favourites: null,
           isFavourited: false,
         },
         error: 'No chocolates found',
       },
     });
 
-    return store.dispatch(fetchChocolates('dsdsadw')).then(() => {
+    return store.dispatch(searchChocolate('dsdsadw')).then(() => {
       // return of async actions
       expect(store.getActions()).toEqual(expectedActions);
     });
@@ -131,6 +132,7 @@ describe('async actions', () => {
           name: null,
           description: null,
           image: null,
+          favourites: null,
           isFavourited: false,
         },
         query: [],
@@ -182,7 +184,10 @@ describe('async actions', () => {
   it('creates AUTH_FAILED when username is shorter than 5 characters', () => {
     fetchMock.postOnce('/v1/auth', {
       body: {
-        message: ['Username is shorter than 5 characters'],
+        message: [
+          "can't be blank",
+          'Username must have at least 5 characters',
+        ],
       },
       headers: { 'content-type': 'application/json' },
       status: 403,
@@ -191,7 +196,10 @@ describe('async actions', () => {
     const expectedActions = [
       {
         type: AUTH_FAILED,
-        payload: ['Username is shorter than 5 characters'],
+        payload: [
+          "can't be blank",
+          'Username must have at least 5 characters',
+        ],
       },
     ];
     const store = mockStore({
