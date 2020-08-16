@@ -27,7 +27,8 @@ class V1::FavouritesController < ApplicationController
       else
         user.favourite_chocolates << Chocolate.find_by_id(params['favourite']['chocolate'])
       end
-      render json: { message: 'Success' }, status: 200
+      check_favourite = user.favourite_chocolates.find_by_id(params['favourite']['chocolate'])
+      render json: { isFavourited: check_favourite ? true : false }, status: 200
     else
       render json: { message: 'Please log in' }, status: 403
     end

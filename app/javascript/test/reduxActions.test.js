@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import {
-  signIn, fetchChocolates, fetchFavourites, toggleFavourites, isFavourited,
+  signIn, fetchChocolates, fetchFavourites,
 } from '../actions';
 import {
   AUTH_SUCCESS,
@@ -34,15 +34,15 @@ describe('async actions', () => {
       },
     ];
     const store = mockStore({
+      auth: {
+        username: 'sharmarke',
+        id: '1',
+        loading: false,
+        error: null,
+      },
       favourites: {
         list: [],
-        selectedChoc: {
-          id: null,
-          name: null,
-          description: null,
-          image: null,
-          isFavourited: false,
-        },
+        error: null,
       },
     });
 
@@ -72,6 +72,13 @@ describe('async actions', () => {
         list: [],
         query: [],
         loading: false,
+        selectedChoc: {
+          id: null,
+          name: null,
+          description: null,
+          image: null,
+          isFavourited: false,
+        },
         error: 'No chocolates found',
       },
     });
@@ -119,6 +126,13 @@ describe('async actions', () => {
             image: 'choco_image',
           },
         ],
+        selectedChoc: {
+          id: null,
+          name: null,
+          description: null,
+          image: null,
+          isFavourited: false,
+        },
         query: [],
         loading: false,
         error: null,
