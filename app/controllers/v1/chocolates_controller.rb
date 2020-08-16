@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class V1::ChocolatesController < ApplicationController
   def index
     choc = Chocolate.includes(:favourites)
@@ -17,9 +19,11 @@ class V1::ChocolatesController < ApplicationController
 
   def search
     query = "%#{params['chocolate']['query']}%"
-    choc = Chocolate.where("name ILIKE ?", query).includes(:favourites)
+    choc = Chocolate.where('name ILIKE ?', query).includes(:favourites)
     chocolates = []
-    unless choc.empty?
+    if choc.empty?
+      render json: { message: 'No chocolates found' }, status: 404
+    else
       choc.each do |chocolate|
         object = {
           id: chocolate.id,
@@ -31,8 +35,6 @@ class V1::ChocolatesController < ApplicationController
         chocolates << object
       end
       render json: chocolates, status: 200
-    else
-      render json: { message: 'No chocolates found' }, status: 404
     end
   end
 end

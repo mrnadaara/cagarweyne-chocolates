@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class V1::FavouritesController < ApplicationController
   def index
     user = User.find_by_id(params['favourite']['user'])
@@ -8,6 +10,7 @@ class V1::FavouritesController < ApplicationController
     end
   end
 
+  # rubocop:disable Metrics/LineLength
   def check_fav
     user = User.find_by_id(params['favourite']['user'])
     if user
@@ -33,4 +36,5 @@ class V1::FavouritesController < ApplicationController
       render json: { message: 'Please log in' }, status: 403
     end
   end
+  # rubocop:enable Metrics/LineLength
 end
