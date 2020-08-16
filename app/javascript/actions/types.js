@@ -1,3 +1,11 @@
 export const AUTH_FETCH = 'auth_fetch';
 export const AUTH_SUCCESS = 'auth_success';
 export const AUTH_FAILED = 'auth_failed';
+export const SIGN_OUT = 'sign_out';
+export const CHOC_FETCH = 'fetch_choc';
+export const SEARCH_CHOCOLATE_SUCCESS = 'search_chocolate_success';
+export const CHOCOLATE_SUCCESS = 'chocolate_success';
+export const CHOCOLATE_FAILED = 'chocolate_failed';
+export const FAVOURITES_SUCCESS = 'favourites_success';
+export const FAVOURITES_FAILED = 'favourites_failed';
+export const SELECT_CHOCOLATE = 'select_chocolate';
