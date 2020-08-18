@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Link, withRouter } from 'react-router-dom';
 import { searchChocolate, signOut } from '../../actions';
 
+import profile from '../../assets/profile.png';
 import './Drawer.scss';
 
 class Drawer extends React.Component {
@@ -48,16 +49,19 @@ class Drawer extends React.Component {
       <div className="drawer-container">
         <div ref={this.drawerContainerRef} className="drawer">
           <div>
-            <div>
-              <h1>{username}</h1>
+            <div className="avatar">
+              <img src={profile} alt="" />
+              <h5>sharmarke</h5>
             </div>
             <ul>
               <li>
+                <div>&nbsp;</div>
                 <Link className="link" to="/">
                   Home
                 </Link>
               </li>
               <li>
+                <div>&nbsp;</div>
                 <Link className="link" to="/favourites">
                   Favourites
                 </Link>
@@ -73,9 +77,17 @@ class Drawer extends React.Component {
         </div>
         <div ref={this.mainContainerRef} className="main">
           <div className="main-header">
-            <div onClick={this.toggleDrawer}>drawer button/back button</div>
+            <div>
+              <button onClick={this.toggleDrawer} type="button">
+                d
+              </button>
+            </div>
             <div>title/search box</div>
-            <div>search button/close button</div>
+            <div>
+              <button type="button">
+                s
+              </button>
+            </div>
           </div>
           <div className="main-content">
             { children }

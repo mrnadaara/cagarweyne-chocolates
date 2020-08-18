@@ -6,44 +6,128 @@
   background-color: #f2f2f2;
   align-items: center;
 
+  .link {
+    color: black;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 20px;
+
+    &:hover {
+      color: #f12711;
+    }
+
+    @include media-breakpoint-up(md) {
+      margin-left: 50px;
+    }
+  }
+
   .show-drawer {
     display: flex !important;
   }
 
   .shorten-main {
     height: 95% !important;
+    border-radius: 5px;
+    border: thin solid #bdc3c7;
+    box-shadow: 6px 2px 47px 15px rgba(0, 0, 0, 0.29);
+    position: fixed;
+    left: 50%;
+
+    @include media-breakpoint-up(md) {
+      left: 30%;
+    }
+
+    @include media-breakpoint-up(xl) {
+      left: 20%;
+    }
   }
 
   .drawer {
-    width: 50%;
+    width: 80%;
     height: 100%;
     display: none;
     flex-direction: column;
     justify-content: space-between;
     padding: 50px 0;
-    padding-left: 20px;
 
     @include media-breakpoint-up(md) {
-      padding-left: 50px;
       width: 30%;
     }
 
     &:first-child {
+      .avatar {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 50px;
+
+        img {
+          width: 70px;
+          height: 70px;
+          margin-bottom: 10px;
+        }
+
+        @include media-breakpoint-up(md) {
+          padding-left: 50px;
+          padding-right: 0;
+        }
+      }
+
       ul {
         padding: 0;
         list-style: none;
+
+        li {
+          display: flex;
+          align-items: center;
+          height: 50px;
+          margin-top: 20px;
+
+          div {
+            background-color: #f12711;
+            height: 100%;
+            width: 5px;
+          }
+        }
       }
     }
 
     &:last-child {
       display: flex;
+      padding: 50px;
     }
   }
 
   .main {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     background-color: white;
-    border-radius: 5px;
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      padding-top: 70px;
+      padding-bottom: 30px;
+
+      @include media-breakpoint-up(md) {
+        padding: 0 70px;
+        padding-top: 70px;
+        padding-bottom: 30px;
+      }
+    }
+
+    .main-content {
+      padding: 0 20px;
+
+      @include media-breakpoint-up(md) {
+        padding: 0 70px;
+      }
+    }
   }
 }
