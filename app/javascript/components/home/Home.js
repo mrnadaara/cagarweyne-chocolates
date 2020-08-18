@@ -1,9 +1,10 @@
 import React from 'react';
+import Drawer from '../Drawer/Drawer';
 
 const Home = () => (
-  <div>
+  <Drawer>
     Welcome to Cagarweyne Chocolates
-  </div>
+  </Drawer>
 );
 
 export default Home;

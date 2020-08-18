@@ -1,0 +1,49 @@
+@import "~bootstrap/scss/bootstrap";
+
+.drawer-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f2f2f2;
+  align-items: center;
+
+  .show-drawer {
+    display: flex !important;
+  }
+
+  .shorten-main {
+    height: 95% !important;
+  }
+
+  .drawer {
+    width: 50%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 0;
+    padding-left: 20px;
+
+    @include media-breakpoint-up(md) {
+      padding-left: 50px;
+      width: 30%;
+    }
+
+    &:first-child {
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+    }
+
+    &:last-child {
+      display: flex;
+    }
+  }
+
+  .main {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 5px;
+  }
+}

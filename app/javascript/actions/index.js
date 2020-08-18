@@ -2,7 +2,14 @@ import {
   AUTH_FETCH, AUTH_SUCCESS, AUTH_FAILED, CHOCOLATE_SUCCESS,
   SEARCH_CHOCOLATE_SUCCESS, CHOCOLATE_FAILED, CHOC_FETCH,
   FAVOURITES_SUCCESS, FAVOURITES_FAILED, SELECT_CHOCOLATE,
+  SIGN_OUT,
 } from './types';
+
+export const signOut = () => (
+  {
+    type: SIGN_OUT,
+  }
+);
 
 const fetchAuth = () => (
   {

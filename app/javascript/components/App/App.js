@@ -12,7 +12,7 @@ const App = () => (
   <Provider store={configureStore()}>
     <Router>
       <Switch>
-        <Route path="/signin" component={Auth} />
+        <Route path="/signin" component={Home} />
         <ProtectedRoute path="/favourites" component={() => 'favourites!'} />
         <ProtectedRoute path="/chocolate" component={() => 'chocolate!'} />
         <ProtectedRoute exact path="/" component={Home} />
