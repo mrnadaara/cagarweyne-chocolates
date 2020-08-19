@@ -14,7 +14,7 @@ const CarouselItem = ({ chocolate, selectChocolate }) => (
           dpr="auto"
           responsive
           width="auto"
-          height="500"
+          height="300"
           crop="fill"
           gravity="center"
           responsiveUseBreakpoints="true"

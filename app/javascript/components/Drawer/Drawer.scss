@@ -39,6 +39,10 @@
     position: fixed;
     left: 50%;
 
+    .carousel-counter {
+      visibility: hidden !important;
+    }
+
     @include media-breakpoint-up(md) {
       left: 30%;
     }
@@ -108,10 +112,8 @@
   }
 
   .main {
-    display: flex;
-    flex-flow: column;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     background-color: white;
     overflow: auto;
 
@@ -120,8 +122,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 0 20px;
-      padding-top: 50px;
-      padding-bottom: 30px;
+      padding-top: 40px;
+      margin-bottom: -20px;
 
       button {
         border: none;

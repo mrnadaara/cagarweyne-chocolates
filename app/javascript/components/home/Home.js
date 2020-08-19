@@ -1,9 +1,9 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  CarouselProvider, Slider, Slide,
-} from 'pure-react-carousel';
+import Flickity from 'react-flickity-component';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,13 +11,26 @@ import { selectChocolate, fetchChocolates } from '../../actions';
 import Drawer from '../Drawer/Drawer';
 import CarouselItem from '../CarouselItem/CarouselItem';
 
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import 'flickity/js/flickity';
+import 'flickity/css/flickity.css';
 import './Home.scss';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     props.fetchChocolates();
+
+    this.state = {
+      currentSlide: 1,
+    };
+  }
+
+  componentDidMount = () => {
+    this.flkty.on('settle', () => {
+      this.setState({
+        currentSlide: this.flkty.selectedIndex + 1,
+      });
+    });
   }
 
   selectChocolate = chocolate => {
@@ -28,32 +41,32 @@ class Home extends React.Component {
 
   render() {
     const { list } = this.props;
+    const { currentSlide } = this.state;
     return (
       <Drawer>
         <div className="main-content">
-          <CarouselProvider
-            naturalSlideWidth={100}
-            naturalSlideHeight={125}
-            totalSlides={7}
-            style={{
-              flex: 1,
+          <Flickity
+            flickityRef={c => this.flkty = c}
+            options={{
+              imagesLoaded: true,
+              lazyLoad: true,
+              freeScroll: true,
+              prevNextButtons: true,
+              pageDots: false,
             }}
+            className="main-carousel"
           >
-            <Slider
-              style={{
-                height: '100%',
-              }}
-            >
-              {list.map((choc, index) => (
-                <Slide key={choc.id} index={index}>
-                  <CarouselItem
-                    selectChocolate={chocolate => this.selectChocolate(chocolate)}
-                    chocolate={choc}
-                  />
-                </Slide>
-              ))}
-            </Slider>
-          </CarouselProvider>
+            {list.map(choc => (
+              <CarouselItem
+                key={choc.id}
+                selectChocolate={chocolate => this.selectChocolate(chocolate)}
+                chocolate={choc}
+              />
+            ))}
+          </Flickity>
+          <div className="carousel-counter">
+            {`${currentSlide}/7`}
+          </div>
         </div>
       </Drawer>
     );
