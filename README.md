@@ -14,6 +14,11 @@
 - Postgres
 - Flickity
 
+## Designs
+
+- Design idea by [Alexey Savitskiy on Behance](https://www.behance.net/alexey_savitskiy)
+- You can view the original project [here](https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App))
+
 ## Live Demo
 
 [Live Demo Link](https://leoandahmedbookstore.herokuapp.com/)
