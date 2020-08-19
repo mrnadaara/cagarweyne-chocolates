@@ -1,0 +1,28 @@
+@import "~bootstrap/scss/bootstrap";
+
+.main-content {
+  display: flex;
+  flex-flow: column;
+  height: 90vh;
+  overflow: hidden;
+
+  .carousel-counter {
+    position: fixed;
+    bottom: 2%;
+    left: 47%;
+    font-size: 20px;
+    visibility: visible;
+  }
+
+  .main-carousel {
+    height: 90vh;
+
+    .flickity-viewport {
+      height: 90vh !important;
+    }
+
+    .flickity-page-dots {
+      position: relative !important;
+    }
+  }
+}

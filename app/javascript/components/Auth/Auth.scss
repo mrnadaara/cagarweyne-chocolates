@@ -1,0 +1,136 @@
+@import "~bootstrap/scss/bootstrap";
+
+.auth-bg {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.auth-container {
+  height: 100%;
+  position: relative;
+
+  .bg-image {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+  }
+
+  .auth-content {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
+    .footer {
+      text-align: center;
+      font-size: 10px;
+      padding: 0 20px;
+
+      @include media-breakpoint-up(md) {
+        font-size: 20px;
+      }
+    }
+
+    .form-container {
+      height: 80%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+
+      @include media-breakpoint-up(lg) {
+        width: 50%;
+        height: 50%;
+      }
+
+      form {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        input {
+          margin-bottom: 50px;
+          border-radius: 30px;
+          height: 50px;
+          width: 70%;
+          padding-left: 30px;
+          border: 1px solid black;
+          color: black;
+
+          @include media-breakpoint-up(lg) {
+            width: 50%;
+          }
+
+          &:focus {
+            border: 1px solid #f37335;
+            outline: none;
+            color: #f37335;
+          }
+        }
+
+        button {
+          border-radius: 30px;
+          height: 50px;
+          width: 50%;
+          border: none;
+          background-color: #f37335;
+          color: white;
+
+          @include media-breakpoint-up(lg) {
+            width: 25%;
+          }
+
+          &:focus {
+            border: none;
+            outline: none;
+          }
+        }
+
+        .loader {
+          margin-top: 50px;
+        }
+
+        .error-container {
+          text-align: center;
+          color: #f12711;
+          font-size: 15px;
+          margin-top: 50px;
+          padding: 0 10px;
+
+          @include media-breakpoint-up(md) {
+            font-size: 25px;
+          }
+        }
+
+        .form-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          text-align: center;
+          margin-bottom: 50px;
+          padding: 0 20px;
+
+          @include media-breakpoint-up(md) {
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
