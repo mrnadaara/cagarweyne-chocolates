@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -33,35 +34,42 @@ class Drawer extends React.Component {
   }
 
   toggleDrawer = () => {
-    const currentToggleState = this.drawerContainerRef.current.classList.contains('show-drawer');
-    if (currentToggleState) {
-      this.drawerContainerRef.current.classList.remove('show-drawer');
-      this.mainContainerRef.current.classList.remove('shorten-main');
+    const { history, back } = this.props;
+    if (back) {
+      history.goBack();
     } else {
-      this.drawerContainerRef.current.classList.add('show-drawer');
-      this.mainContainerRef.current.classList.add('shorten-main');
+      const currentToggleState = this.drawerContainerRef.current.classList.contains('show-drawer');
+      if (currentToggleState) {
+        this.drawerContainerRef.current.classList.remove('show-drawer');
+        this.mainContainerRef.current.classList.remove('shorten-main');
+      } else {
+        this.drawerContainerRef.current.classList.add('show-drawer');
+        this.mainContainerRef.current.classList.add('shorten-main');
+      }
     }
   }
 
   render() {
-    const { children, username } = this.props;
+    const {
+      children, username, title, path, back,
+    } = this.props;
     return (
       <div className="drawer-container">
         <div ref={this.drawerContainerRef} className="drawer">
           <div>
             <div className="avatar">
               <img src={profile} alt="" />
-              <h5>sharmarke</h5>
+              <h5>{username}</h5>
             </div>
             <ul>
               <li>
-                <div>&nbsp;</div>
+                <div className={path !== 'home' ? 'transparent-link' : ''}>&nbsp;</div>
                 <Link className="link" to="/">
                   Home
                 </Link>
               </li>
               <li>
-                <div>&nbsp;</div>
+                <div className={path !== 'favourites' ? 'transparent-link' : ''}>&nbsp;</div>
                 <Link className="link" to="/favourites">
                   Favourites
                 </Link>
@@ -79,19 +87,21 @@ class Drawer extends React.Component {
           <div className="main-header">
             <div>
               <button onClick={this.toggleDrawer} type="button">
-                d
+                {
+                  back ? <i className="fas fa-chevron-left" /> : <i className="fas fa-bars" />
+                }
               </button>
             </div>
-            <div>title/search box</div>
+            <div>
+              <p>{title}</p>
+            </div>
             <div>
               <button type="button">
-                s
+                <i className="fas fa-search" />
               </button>
             </div>
           </div>
-          <div className="main-content">
-            { children }
-          </div>
+          { children }
         </div>
       </div>
     );
@@ -99,17 +109,20 @@ class Drawer extends React.Component {
 }
 
 Drawer.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    description: PropTypes.string,
-    image: PropTypes.string,
-    favourites: PropTypes.number,
-  })),
-  username: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  back: PropTypes.bool,
+  path: PropTypes.string,
+  // results: PropTypes.arrayOf(PropTypes.shape({
+  //   id: PropTypes.number,
+  //   name: PropTypes.string,
+  //   description: PropTypes.string,
+  //   image: PropTypes.string,
+  //   favourites: PropTypes.number,
+  // })),
+  username: PropTypes.string,
   searchChocolate: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
-  children: PropTypes.elementType.isRequired,
+  children: PropTypes.object.isRequired,
   history: PropTypes.shape({
     action: PropTypes.string,
     block: PropTypes.func,
@@ -123,7 +136,6 @@ Drawer.propTypes = {
       pathname: PropTypes.string,
       search: PropTypes.string,
       hash: PropTypes.string,
-      // eslint-disable-next-line react/forbid-prop-types
       state: PropTypes.object,
     }),
     push: PropTypes.func,
@@ -132,7 +144,11 @@ Drawer.propTypes = {
 };
 
 Drawer.defaultProps = {
-  results: [],
+  // results: [],
+  username: '',
+  back: false,
+  title: 'Chocolates',
+  path: 'home',
 };
 
 const mapStateToProps = ({ chocolates, auth }) => ({

@@ -76,9 +76,9 @@
           }
 
           &:focus {
-            border: 1px solid red;
+            border: 1px solid #f37335;
             outline: none;
-            color: red;
+            color: #f37335;
           }
         }
 
@@ -87,7 +87,7 @@
           height: 50px;
           width: 50%;
           border: none;
-          background-color: red;
+          background-color: #f37335;
           color: white;
 
           @include media-breakpoint-up(lg) {
@@ -106,7 +106,7 @@
 
         .error-container {
           text-align: center;
-          color: red;
+          color: #f12711;
           font-size: 15px;
           margin-top: 50px;
           padding: 0 10px;

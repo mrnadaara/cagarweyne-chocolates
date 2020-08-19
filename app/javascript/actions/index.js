@@ -79,28 +79,25 @@ const favFailed = payload => (
   }
 );
 
-export const signIn = username => async dispatch => {
+export const signIn = (username, history) => async dispatch => {
   dispatch(fetchAuth);
-  try {
-    const result = await fetch('/v1/auth', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
+  const result = await fetch('/v1/auth', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user: {
+        username,
       },
-      body: JSON.stringify({
-        user: {
-          username,
-        },
-      }),
-    });
-    const response = await result.json();
-    if (result.status === 200) {
-      dispatch(authSuccess(response));
-    } else {
-      dispatch(authFailed(response.message));
-    }
-  } catch (e) {
-    dispatch(authFailed(e.message));
+    }),
+  });
+  const response = await result.json();
+  if (result.status === 200) {
+    dispatch(authSuccess(response));
+    history.push('/');
+  } else {
+    dispatch(authFailed(response.message));
   }
 };
 
@@ -191,7 +188,7 @@ export const selectChocolate = chocolate => async (dispatch, getState) => {
 };
 
 export const toggleFav = () => async (dispatch, getState) => {
-  const { chocolate } = getState();
+  const { chocolates } = getState();
   try {
     const result = await fetch('/v1/favourites/toggle-fav', {
       method: 'post',
@@ -201,13 +198,15 @@ export const toggleFav = () => async (dispatch, getState) => {
       body: JSON.stringify({
         favourite: {
           user: getState().auth.id,
-          chocolate: chocolate.selectedChoc.id,
+          chocolate: chocolates.selectedChoc.id,
         },
       }),
     });
     const response = await result.json();
     if (result.status === 200) {
-      dispatch(selectChocolateSuccess({ chocolate, isFavourited: response.isFavourited }));
+      dispatch(selectChocolateSuccess({
+        chocolate: chocolates.selectedChoc, isFavourited: response.isFavourited,
+      }));
     } else {
       throw new Error(response.message);
     }

@@ -7,17 +7,17 @@ import {
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectChocolate, fetchChocolates } from '../../actions';
+import { selectChocolate, fetchFavourites } from '../../actions';
 import Drawer from '../Drawer/Drawer';
 import CarouselItem from '../CarouselItem/CarouselItem';
 
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import './Home.scss';
+import './Favourites.scss';
 
-class Home extends React.Component {
+class Favourites extends React.Component {
   constructor(props) {
     super(props);
-    props.fetchChocolates();
+    props.fetchFavourites();
   }
 
   selectChocolate = chocolate => {
@@ -29,12 +29,12 @@ class Home extends React.Component {
   render() {
     const { list } = this.props;
     return (
-      <Drawer>
+      <Drawer title="Favourites" path="favourites">
         <div className="main-content">
           <CarouselProvider
             naturalSlideWidth={100}
             naturalSlideHeight={125}
-            totalSlides={7}
+            totalSlides={list.length}
             style={{
               flex: 1,
             }}
@@ -60,9 +60,9 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = {
+Favourites.propTypes = {
   selectChocolate: PropTypes.func.isRequired,
-  fetchChocolates: PropTypes.func.isRequired,
+  fetchFavourites: PropTypes.func.isRequired,
   list: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -90,13 +90,13 @@ Home.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = ({ chocolates }) => ({
-  list: chocolates.list,
+const mapStateToProps = ({ favourites }) => ({
+  list: favourites.list,
 });
 
 const mapDispatchToProps = action => bindActionCreators({
   selectChocolate,
-  fetchChocolates,
+  fetchFavourites,
 }, action);
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Favourites));

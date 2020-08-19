@@ -1,5 +1,7 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Image, Transformation } from 'cloudinary-react';
@@ -19,8 +21,8 @@ class Auth extends React.Component {
   submitHandler = event => {
     event.preventDefault();
     const { username } = this.state;
-    const { signIn } = this.props;
-    signIn(username);
+    const { signIn, history } = this.props;
+    signIn(username, history);
   };
 
   inputHandler = event => {
@@ -97,6 +99,24 @@ Auth.propTypes = {
   signIn: PropTypes.func.isRequired,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    action: PropTypes.string,
+    block: PropTypes.func,
+    createHref: PropTypes.func,
+    go: PropTypes.func,
+    goBack: PropTypes.func,
+    goForward: PropTypes.func,
+    length: PropTypes.number,
+    listen: PropTypes.func,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+      search: PropTypes.string,
+      hash: PropTypes.string,
+      state: PropTypes.object,
+    }),
+    push: PropTypes.func,
+    replace: PropTypes.func,
+  }).isRequired,
 };
 
 Auth.defaultProps = {
@@ -117,4 +137,4 @@ const mapDispatchToProps = action => bindActionCreators({
   signIn,
 }, action);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Auth));
