@@ -44,7 +44,7 @@ class Home extends React.Component {
     const { currentSlide } = this.state;
     return (
       <Drawer>
-        <div className="main-content">
+        <main className="main-content">
           <Flickity
             flickityRef={c => this.flkty = c}
             options={{
@@ -67,7 +67,7 @@ class Home extends React.Component {
           <div className="carousel-counter">
             {`${currentSlide}/7`}
           </div>
-        </div>
+        </main>
       </Drawer>
     );
   }

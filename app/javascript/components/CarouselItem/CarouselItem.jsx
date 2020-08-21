@@ -48,8 +48,4 @@ CarouselItem.propTypes = {
   }).isRequired,
 };
 
-// export default WithStore(CarouselItem, state => ({
-//   currentSlide: state.currentSlide,
-// }));
-
 export default CarouselItem;

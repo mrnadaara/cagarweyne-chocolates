@@ -56,7 +56,7 @@ class Drawer extends React.Component {
     return (
       <div className="drawer-container">
         <div ref={this.drawerContainerRef} className="drawer">
-          <div>
+          <nav>
             <div className="avatar">
               <img src={profile} alt="" />
               <h5>{username}</h5>
@@ -75,7 +75,7 @@ class Drawer extends React.Component {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
           <div>
             <hr />
             <button className="link" type="button" onClick={this.signOut}>
@@ -84,7 +84,7 @@ class Drawer extends React.Component {
           </div>
         </div>
         <div ref={this.mainContainerRef} className="main">
-          <div className="main-header">
+          <header className="main-header">
             <div>
               <button onClick={this.toggleDrawer} type="button">
                 {
@@ -100,7 +100,7 @@ class Drawer extends React.Component {
                 <i className="fas fa-search" />
               </button>
             </div>
-          </div>
+          </header>
           { children }
         </div>
       </div>
@@ -112,13 +112,6 @@ Drawer.propTypes = {
   title: PropTypes.string,
   back: PropTypes.bool,
   path: PropTypes.string,
-  // results: PropTypes.arrayOf(PropTypes.shape({
-  //   id: PropTypes.number,
-  //   name: PropTypes.string,
-  //   description: PropTypes.string,
-  //   image: PropTypes.string,
-  //   favourites: PropTypes.number,
-  // })),
   username: PropTypes.string,
   searchChocolate: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
@@ -144,7 +137,6 @@ Drawer.propTypes = {
 };
 
 Drawer.defaultProps = {
-  // results: [],
   username: '',
   back: false,
   title: 'Chocolates',

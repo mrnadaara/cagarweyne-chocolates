@@ -71,7 +71,7 @@ class Auth extends React.Component {
           </Image>
           <div className="auth-content">
             <div />
-            <div className="form-container">
+            <main className="form-container">
               <form onSubmit={this.submitHandler}>
                 <div className="form-header">
                   <h1>Sign In</h1>
@@ -86,8 +86,8 @@ class Auth extends React.Component {
                 <button className="shadow-lg" type="submit">Sign In</button>
                 { this.showLoader() }
               </form>
-            </div>
-            <div className="footer">© 2020 Cagarweyne Chocolates. All rights reserved.</div>
+            </main>
+            <footer className="footer">© 2020 Cagarweyne Chocolates. All rights reserved.</footer>
           </div>
         </div>
       </div>

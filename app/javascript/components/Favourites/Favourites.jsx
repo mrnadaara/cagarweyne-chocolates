@@ -41,7 +41,7 @@ class Favourites extends React.Component {
     const { currentSlide } = this.state;
     return (
       <Drawer title="Favourites" path="favourites">
-        <div className="main-content">
+        <main className="main-content">
           <Flickity
             flickityRef={c => this.flkty = c}
             options={{
@@ -64,7 +64,7 @@ class Favourites extends React.Component {
           <div className="carousel-counter">
             {`${currentSlide}/${list.length}`}
           </div>
-        </div>
+        </main>
       </Drawer>
     );
   }
