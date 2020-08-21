@@ -21,7 +21,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://leoandahmedbookstore.herokuapp.com/)
+[Live Demo Link](https://limitless-stream-11247.herokuapp.com/)
 
 ## Getting Started
 
