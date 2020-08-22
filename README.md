@@ -57,7 +57,12 @@ your react app by running ``` ./bin/webpack-dev-server ``` in a separate termina
 
 Project was deployed to Heroku
 
-## Authors
+### Testing
+
+- For rails integration, request and unit testing run ``` bundle exec rspec ```
+- For react redux testing run ``` yarn test ```
+
+## Author
 
 👤 **Sharma'arke Ahmed**
 
