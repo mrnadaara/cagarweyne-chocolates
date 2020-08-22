@@ -79,7 +79,7 @@ const favFailed = payload => (
   }
 );
 
-export const signIn = (username, history) => async dispatch => {
+export const signIn = (username, history = []) => async dispatch => {
   dispatch(fetchAuth);
   const result = await fetch('/v1/auth', {
     method: 'post',

@@ -14,11 +14,6 @@
 - Postgres
 - Flickity
 
-## Designs
-
-- Design idea by [Alexey Savitskiy on Behance](https://www.behance.net/alexey_savitskiy)
-- You can view the original project [here](https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App))
-
 ## Live Demo
 
 [Live Demo Link](https://limitless-stream-11247.herokuapp.com/)
@@ -45,13 +40,15 @@ To get a local copy up and running follow these simple example steps.
 
 4. For React, install all dependencies ``` yarn install ```
 
-5. Setup the database by running ``` rails db:migrate ``` and then ``` rails db:setup ``` 
+5. Define your postgres credentials by going to ``` config/local_env.yml ``` and replace the username and password with your own
 
-6. Start development server ``` rails server ```
+6. Setup the database by running ``` rails db:migrate ``` and then ``` rails db:setup ```
+
+7. If for whatever reason the chocolates table is empty, run ``` rails db:seed ``` 
 
 ### Usage
 
-- Start development server ``` yarn start ```
+- Start development server ``` rails server ```
 
 - OPTIONAL: You can have Webpack continuously re-bundle 
 your react app by running ``` ./bin/webpack-dev-server ``` in a separate terminal
